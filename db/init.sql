@@ -1,0 +1,8 @@
+CREATE TABLE runs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  timestamp DATETIME NOT NULL,
+  prompt TEXT NOT NULL,
+  tool VARCHAR(50) NOT NULL,
+  tokens INT NOT NULL,
+  response TEXT NOT NULL
+);

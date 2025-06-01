@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  app:
+    build: ./backend
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: alphaframe
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+  redis:
+    image: redis:7
+    volumes:
+      - redis-data:/data
+volumes:
+  mysql-data:
+  redis-data:
